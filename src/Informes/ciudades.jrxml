@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.19.1.final using JasperReports Library version 6.19.1-867c00bf88cd4d784d404379d6c05e1b419e8a4c  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ciudades" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6ce97c6a-464d-40bf-af4e-c6ae721149b6">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.jrdax"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<queryString>
+		<![CDATA[SELECT
+A.idciudad,
+A.descripcion,
+A.idpais,
+P.descripcion AS PAIS
+FROM ciudad AS A
+INNER JOIN pais AS P ON P.idpais = A.idpais;]]>
+	</queryString>
+	<field name="idciudad" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="idciudad"/>
+		<property name="com.jaspersoft.studio.field.label" value="idciudad"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="ciudad"/>
+		<fieldDescription><![CDATA[Codigo de identificacion de la ciudad]]></fieldDescription>
+	</field>
+	<field name="descripcion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="descripcion"/>
+		<property name="com.jaspersoft.studio.field.label" value="descripcion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="ciudad"/>
+		<fieldDescription><![CDATA[Descripcion o nombre de la ciudad]]></fieldDescription>
+	</field>
+	<field name="idpais" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="idpais"/>
+		<property name="com.jaspersoft.studio.field.label" value="idpais"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="ciudad"/>
+		<fieldDescription><![CDATA[Codigo de identificacion del pais relacionado a la ciudad]]></fieldDescription>
+	</field>
+	<field name="PAIS" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="descripcion"/>
+		<property name="com.jaspersoft.studio.field.label" value="PAIS"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pais"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="550" height="40" forecolor="#FFFFFF" backcolor="#525252" uuid="c6e32ff5-654b-4811-b961-122cad835fc2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="22"/>
+				</textElement>
+				<text><![CDATA[LISTADO DE CIUDADES DEL SISTEMA]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="4" width="50" height="20" uuid="efe8569c-5991-4a7a-9bdb-f74b8744fe98">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3bed18c5-e8a9-4054-b938-0c591d0f695a"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="50" y="4" width="230" height="20" uuid="6a55efe6-68a7-4c03-819f-325dfe231610">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3bed18c5-e8a9-4054-b938-0c591d0f695a"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ciudad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="4" width="270" height="20" uuid="ba7c5e1d-9973-4561-8371-b78e4882254f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3bed18c5-e8a9-4054-b938-0c591d0f695a"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pais]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="50" height="20" uuid="2117b1a6-0c0c-4c9f-a42a-c6693fcebb02">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3bed18c5-e8a9-4054-b938-0c591d0f695a"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{idciudad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="50" y="0" width="230" height="20" uuid="934efa04-ecd2-42a1-ba90-c9e3eccb74ec">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3bed18c5-e8a9-4054-b938-0c591d0f695a"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="0" width="270" height="20" uuid="a3be0841-b62e-41e0-9b44-0c83996c9e30">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3bed18c5-e8a9-4054-b938-0c591d0f695a"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PAIS}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

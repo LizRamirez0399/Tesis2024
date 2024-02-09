@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.19.1.final using JasperReports Library version 6.19.1-867c00bf88cd4d784d404379d6c05e1b419e8a4c  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="servicio" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="542bf628-381b-4015-962d-e1f7657fe33a">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.jrdax"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="P_ID" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT 
+/*DATOS DE LA CABECERA DE LA FACTURA*/
+S.numero_documento AS NUMERO_DOCUMENTO,
+S.numero_timbrado AS NUMERO_TIMBRADO,
+S.fecha,
+S.observacion AS OBSERVACION,
+S.idcliente AS CLIENTE_CODIGO,
+CONCAT(C.nombre,' ',C.apellido) AS CLIENTE_DESCRIPCION,
+C.cedula AS CLIENTE_CEDULA,
+C.telefono AS CLIENTE_TELEFONO,
+C.direccion AS CLIENTE_DIRECCION,
+ /*DATOS DEL DETALLE DE LA FACTURA*/
+SD.numero_item AS NUMERO_ITEM,
+SD.idarticulo AS ARTICULO_CODIGO,
+A.descripcion AS ARTICULO_DESCRIPCION,
+SD.cantidad AS CANTIDAD,
+SD.precio AS PRECIO,
+(SD.precio * SD.cantidad) AS SUB_TOTAL,
+SD.observacion AS  OBS_DET,
+/*DATOS DEL ORDEN DE TRABAJO RELACIONADO AL SERVICIO*/
+OT.idorden,
+OT.numero_comprobante
+FROM servicio_detalle AS SD
+INNER JOIN servicio AS S ON S.idservicio = SD.idservicio
+INNER JOIN cliente AS C ON C.idcliente = S.idcliente
+INNER JOIN articulo AS A ON A.idarticulo = SD.idarticulo
+INNER JOIN servicio_orden_trabajo AS SOT ON SOT.idservicio = S.idservicio
+INNER JOIN orden_trabajo AS OT ON OT.idorden = SOT.idorden
+WHERE S.idservicio =   $P{P_ID} 
+ORDER BY SD.numero_item ASC;]]>
+	</queryString>
+	<field name="NUMERO_DOCUMENTO" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="numero_documento"/>
+		<property name="com.jaspersoft.studio.field.label" value="NUMERO_DOCUMENTO"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="servicio"/>
+		<fieldDescription><![CDATA[Numero de comprobante del servicio]]></fieldDescription>
+	</field>
+	<field name="NUMERO_TIMBRADO" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="numero_timbrado"/>
+		<property name="com.jaspersoft.studio.field.label" value="NUMERO_TIMBRADO"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="servicio"/>
+		<fieldDescription><![CDATA[Numero del timbrado del servicio]]></fieldDescription>
+	</field>
+	<field name="fecha" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="fecha"/>
+		<property name="com.jaspersoft.studio.field.label" value="fecha"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="servicio"/>
+		<fieldDescription><![CDATA[Fecha del documento del servicio ingresado]]></fieldDescription>
+	</field>
+	<field name="OBSERVACION" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="observacion"/>
+		<property name="com.jaspersoft.studio.field.label" value="OBSERVACION"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="servicio"/>
+		<fieldDescription><![CDATA[Observaciones referentes al servicio]]></fieldDescription>
+	</field>
+	<field name="CLIENTE_CODIGO" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="idcliente"/>
+		<property name="com.jaspersoft.studio.field.label" value="CLIENTE_CODIGO"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="servicio"/>
+	</field>
+	<field name="CLIENTE_DESCRIPCION" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="CLIENTE_DESCRIPCION"/>
+		<property name="com.jaspersoft.studio.field.label" value="CLIENTE_DESCRIPCION"/>
+	</field>
+	<field name="CLIENTE_CEDULA" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="cedula"/>
+		<property name="com.jaspersoft.studio.field.label" value="CLIENTE_CEDULA"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
+	</field>
+	<field name="CLIENTE_TELEFONO" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="telefono"/>
+		<property name="com.jaspersoft.studio.field.label" value="CLIENTE_TELEFONO"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
+	</field>
+	<field name="CLIENTE_DIRECCION" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="direccion"/>
+		<property name="com.jaspersoft.studio.field.label" value="CLIENTE_DIRECCION"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
+	</field>
+	<field name="NUMERO_ITEM" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="numero_item"/>
+		<property name="com.jaspersoft.studio.field.label" value="NUMERO_ITEM"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="servicio_detalle"/>
+		<fieldDescription><![CDATA[Numero de item al momento de ingresar el servicio]]></fieldDescription>
+	</field>
+	<field name="ARTICULO_CODIGO" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="idarticulo"/>
+		<property name="com.jaspersoft.studio.field.label" value="ARTICULO_CODIGO"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="servicio_detalle"/>
+	</field>
+	<field name="ARTICULO_DESCRIPCION" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="descripcion"/>
+		<property name="com.jaspersoft.studio.field.label" value="ARTICULO_DESCRIPCION"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="articulo"/>
+	</field>
+	<field name="CANTIDAD" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="cantidad"/>
+		<property name="com.jaspersoft.studio.field.label" value="CANTIDAD"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="servicio_detalle"/>
+		<fieldDescription><![CDATA[Cantidad del articulo correspondiente al servicio]]></fieldDescription>
+	</field>
+	<field name="PRECIO" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="precio"/>
+		<property name="com.jaspersoft.studio.field.label" value="PRECIO"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="servicio_detalle"/>
+		<fieldDescription><![CDATA[Precio correspondiente del articulo del servicio]]></fieldDescription>
+	</field>
+	<field name="SUB_TOTAL" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="SUB_TOTAL"/>
+		<property name="com.jaspersoft.studio.field.label" value="SUB_TOTAL"/>
+	</field>
+	<field name="OBS_DET" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="observacion"/>
+		<property name="com.jaspersoft.studio.field.label" value="OBS_DET"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="servicio_detalle"/>
+	</field>
+	<field name="idorden" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="idorden"/>
+		<property name="com.jaspersoft.studio.field.label" value="idorden"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orden_trabajo"/>
+		<fieldDescription><![CDATA[Codigo de identificacion de la orden de servicios]]></fieldDescription>
+	</field>
+	<field name="numero_comprobante" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="numero_comprobante"/>
+		<property name="com.jaspersoft.studio.field.label" value="numero_comprobante"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orden_trabajo"/>
+		<fieldDescription><![CDATA[Numero del comprobante de la orden de servicios]]></fieldDescription>
+	</field>
+	<variable name="SUB_TOTAL1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{SUB_TOTAL}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="185" splitType="Stretch">
+			<rectangle radius="12">
+				<reportElement x="380" y="3" width="180" height="70" uuid="a92ed219-fa6d-40f6-b158-c4a1899a57ae"/>
+			</rectangle>
+			<textField>
+				<reportElement x="385" y="38" width="170" height="30" uuid="44cbcb87-4585-49fd-99db-6e9e6fe1f701"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NUMERO_DOCUMENTO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="385" y="8" width="170" height="30" uuid="f3eb44d2-30a1-4f1b-840a-40afd009c3f9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="22"/>
+				</textElement>
+				<text><![CDATA[Factura N°
+]]></text>
+			</staticText>
+			<rectangle radius="12">
+				<reportElement x="0" y="3" width="376" height="70" uuid="c2b49cf5-3491-4db2-b01a-8f1e69f53070"/>
+			</rectangle>
+			<rectangle radius="12">
+				<reportElement x="0" y="77" width="560" height="108" uuid="3603c2c9-126b-4e0f-86ff-8154a6f281f3">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</rectangle>
+			<textField pattern="d &apos;de&apos; MMMM &apos;de&apos; yyyy">
+				<reportElement x="60" y="80" width="316" height="20" uuid="7d78f1cd-97d0-4b3a-9a30-39fb93715abb"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="80" width="50" height="20" uuid="6be42229-273d-49b4-85f1-4a12695b2da3"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="100" width="50" height="20" uuid="0f9f541e-fb0f-412e-a77d-d066cacc84df"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[Cliente:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="60" y="100" width="316" height="20" uuid="c0a91964-d7ae-4a3f-964a-86eec8af3ff4"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CLIENTE_DESCRIPCION}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="380" y="80" width="60" height="20" uuid="23ae904d-aa67-469a-9558-719db3e1aebd"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[Teléfono:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="440" y="80" width="115" height="20" uuid="9bdb35bf-2cb6-4085-814d-9b88f972bbf7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CLIENTE_TELEFONO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="380" y="100" width="60" height="20" uuid="ad244c02-3114-44d6-a951-c41d7cbe1716"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[Cédula:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="440" y="100" width="115" height="20" uuid="814ffb8b-a1b8-48fe-95d8-c1193223d0b0"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CLIENTE_CEDULA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="120" width="60" height="20" uuid="7255cc19-d988-4b15-922a-163dade15ecd"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[Dirección:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="70" y="120" width="485" height="20" uuid="73bf02db-1d91-45e6-b8c5-766b6c60dd15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CLIENTE_DIRECCION}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="140" width="80" height="20" uuid="34182a82-a525-4b19-ae46-5bb6a95ab2bd"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[Observación:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="90" y="140" width="465" height="20" uuid="c742ed44-bbeb-42fe-bac4-609185117013"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{OBSERVACION}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="160" width="50" height="20" uuid="c6c010bc-9f59-4bc1-a53c-288359e98f48"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[O.T. N°:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="60" y="160" width="495" height="20" uuid="53eb090c-b2dc-4320-afd0-bc41614c7734"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero_comprobante}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="4" width="60" height="20" uuid="e2730847-c343-4af0-a23d-f981f978ca1d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="38202b53-686c-4e7a-a16a-d6de6545f15f"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="4" width="270" height="20" uuid="22afc10b-9998-4891-9232-4e5b255fe018">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="38202b53-686c-4e7a-a16a-d6de6545f15f"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Artículo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="4" width="75" height="20" uuid="67150f03-4799-4770-bd77-bad77fcf5245">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="38202b53-686c-4e7a-a16a-d6de6545f15f"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Sub Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="405" y="4" width="75" height="20" uuid="c6c5f2fd-642f-4db1-95c1-13a831c3cd48">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="38202b53-686c-4e7a-a16a-d6de6545f15f"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="330" y="4" width="75" height="20" uuid="bea2be3d-ab5d-42bf-a837-ff900c2a0c03">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="38202b53-686c-4e7a-a16a-d6de6545f15f"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Precio]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="40" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="60" height="20" uuid="5f048fe7-dbb0-4a00-87ef-216d1a7826cc">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="38202b53-686c-4e7a-a16a-d6de6545f15f"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ARTICULO_CODIGO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="0" width="270" height="20" uuid="18bbdd5d-a544-44ff-9866-cdf1b6e2cc17">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="38202b53-686c-4e7a-a16a-d6de6545f15f"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ARTICULO_DESCRIPCION}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.###;(#,##0.###-)">
+				<reportElement x="480" y="0" width="75" height="20" uuid="72079cca-e1a0-4b00-952e-cec53c08564e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="38202b53-686c-4e7a-a16a-d6de6545f15f"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SUB_TOTAL}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.###;(#,##0.###-)">
+				<reportElement x="405" y="0" width="75" height="20" uuid="a13c90bb-a722-4292-bfa5-8cfd53bb3bde">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="38202b53-686c-4e7a-a16a-d6de6545f15f"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CANTIDAD}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.###;(#,##0.###-)">
+				<reportElement x="330" y="0" width="75" height="20" uuid="1971e4dd-ae37-4022-b50f-b10a2d2f4c37">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="38202b53-686c-4e7a-a16a-d6de6545f15f"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PRECIO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="20" width="495" height="20" uuid="996e87c7-c541-40f6-9e71-0c48b8f1fb2e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="38202b53-686c-4e7a-a16a-d6de6545f15f"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{OBS_DET}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="20" width="60" height="20" uuid="f357d983-7664-4f30-97bb-604e45e26dc9">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="38202b53-686c-4e7a-a16a-d6de6545f15f"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Obs.:]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="56" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="480" height="20" uuid="dc61f3dc-5872-4d18-ab4c-7b12c2078a3c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="38202b53-686c-4e7a-a16a-d6de6545f15f"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Total:]]></text>
+			</staticText>
+			<textField pattern="#,##0.###;(#,##0.###-)">
+				<reportElement x="480" y="0" width="75" height="20" uuid="492a2b5c-4490-4099-9074-93875c9ba2a7"/>
+				<box>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{SUB_TOTAL1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

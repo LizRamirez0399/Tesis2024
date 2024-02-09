@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.19.1.final using JasperReports Library version 6.19.1-867c00bf88cd4d784d404379d6c05e1b419e8a4c  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="depositos" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="09c71b4e-d1c0-42fd-867e-81b06d3c0f0a">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.jrdax"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<queryString>
+		<![CDATA[SELECT
+D.iddeposito,
+D.descripcion
+FROM deposito AS D;]]>
+	</queryString>
+	<field name="iddeposito" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="iddeposito"/>
+		<property name="com.jaspersoft.studio.field.label" value="iddeposito"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="deposito"/>
+		<fieldDescription><![CDATA[Codigo de identificacion del deposito]]></fieldDescription>
+	</field>
+	<field name="descripcion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="descripcion"/>
+		<property name="com.jaspersoft.studio.field.label" value="descripcion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="deposito"/>
+		<fieldDescription><![CDATA[Descripcion o nombre del deposito]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="550" height="40" forecolor="#FFFFFF" backcolor="#525252" uuid="8740e1b0-25e6-4c42-b922-c6e07c6e0f4a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="22"/>
+				</textElement>
+				<text><![CDATA[LISTADO DE DEPOSITOS DEL SISTEMA]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="4" width="50" height="20" uuid="143e19a0-ebcb-44e8-9a40-449c3068de55">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3bed18c5-e8a9-4054-b938-0c591d0f695a"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="50" y="4" width="500" height="20" uuid="f91d1284-1aab-441f-95a2-26e67aa88adf">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3bed18c5-e8a9-4054-b938-0c591d0f695a"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Deposito]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="50" height="20" uuid="aab1e610-d7ee-4b01-9f09-7052fa792481">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3bed18c5-e8a9-4054-b938-0c591d0f695a"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{iddeposito}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="50" y="0" width="500" height="20" uuid="b55a2c6d-20cb-4b2a-b4b1-0d6f930a9ef3">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3bed18c5-e8a9-4054-b938-0c591d0f695a"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
